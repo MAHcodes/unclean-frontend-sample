@@ -1,25 +1,28 @@
 import { IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { dialogIt } from "../redux/features/dialogSlice";
+import { useLocation } from "react-router-dom";
+import { Api } from "../configs/axios";
+import { routesMap } from "../routes/settings";
 
-interface IDeleteButtonProps {
-  action: () => void;
-}
-
-const DeleteButton: FC<IDeleteButtonProps> = ({ data }) => {
+const DeleteButton = ({ data }: { data: any }) => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const deleteIt = () => {
-    console.log("deleted");
+    Api.delete(routesMap[pathname as keyof typeof routesMap], {
+      data: {
+        id: data.id,
+      },
+    });
   };
 
   const handleDelete = () => {
     dispatch(
       dialogIt({
-        title: `Delete Post!`,
-        context: `Are you sure you want to delete permenently?`,
+        title: "Delete!",
+        context: `Are you sure you want to DELETE this record permanently?`,
         agree: deleteIt,
       }),
     );
