@@ -1,8 +1,12 @@
-export const defs = [
+import { ColDef } from "ag-grid-community";
+import DeleteButton from "../../../components/DeleteButton";
+
+export const defs: ColDef[] = [
   { field: "id" },
-  { field: "title" },
-  { field: "description" },
+  { field: "title", editable: true },
+  { field: "description", editable: true },
   { field: "user.username", headerName: "Author" },
   { field: "tagIds", headerName: "Tags" },
-  { field: "postedDate", headerName: "Post Date" },
+  { field: "postedDate", headerName: "Post Date", flex: 1 },
+  { headerName: "Delete", cellRenderer: DeleteButton },
 ];

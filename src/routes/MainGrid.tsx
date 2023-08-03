@@ -8,7 +8,6 @@ interface IMainGridProps {
 
 const MainGrid: FC<IMainGridProps> = ({ defs }) => {
   const data = useLoaderData();
-  console.log(data);
 
   const defaultColDef = useMemo(
     () => ({
@@ -30,6 +29,7 @@ const MainGrid: FC<IMainGridProps> = ({ defs }) => {
         columnDefs={defs}
         rowSelection="multiple"
         enableRangeSelection
+        sideBar
       />
     </div>
   );
