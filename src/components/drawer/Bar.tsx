@@ -6,6 +6,7 @@ import { FC } from "react";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material";
 import { drawerWidth } from ".";
+import { Link } from "react-router-dom";
 
 interface IBarProps {
   open: boolean;
@@ -16,10 +17,15 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
+const StyledLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  textDecoration: "none",
+}));
+
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
-  backgroundColor: theme.palette.grey[900],
+  backgroundColor: theme.palette.primary.main,
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -50,9 +56,11 @@ const Bar: FC<IBarProps> = ({ open, handleDrawerOpen }) => (
       >
         <MenuIcon />
       </IconButton>
-      <Typography variant="h6" noWrap component="div">
-        Unclean Frontend Sample
-      </Typography>
+      <StyledLink to="">
+        <Typography variant="h6" noWrap component="div">
+          Unclean Frontend Sample
+        </Typography>
+      </StyledLink>
     </Toolbar>
   </AppBar>
 );

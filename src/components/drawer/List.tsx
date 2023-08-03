@@ -5,18 +5,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap, styled } from "@mui/material";
-
-export interface IListItem {
-  label: string;
-  to: string;
-  Icon: OverridableComponent<SvgIconTypeMap>;
-}
+import { styled } from "@mui/material";
+import { IRoutes } from "../../App";
 
 interface IListProps {
   open?: boolean;
-  listItems: IListItem[];
+  listItems: IRoutes[];
 }
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -27,8 +21,8 @@ const StyledLink = styled(Link)(({ theme }) => ({
 const List: FC<IListProps> = ({ open, listItems }) => {
   return (
     <MuiList>
-      {listItems.map(({ label, to, Icon }, idx) => (
-        <StyledLink key={idx} to={to}>
+      {listItems.map(({ label, path, Icon }, idx) => (
+        <StyledLink key={idx} to={path}>
           <ListItem disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{
@@ -39,6 +33,7 @@ const List: FC<IListProps> = ({ open, listItems }) => {
             >
               <ListItemIcon
                 sx={{
+                  color: "inherit",
                   minWidth: 0,
                   mr: open ? 3 : "auto",
                   justifyContent: "center",

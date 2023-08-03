@@ -4,29 +4,9 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import DrawerHeader from "./Header";
 import Bar from "./Bar";
-import List, { IListItem } from "./List";
-import GroupIcon from "@mui/icons-material/Group";
-import SellIcon from "@mui/icons-material/Sell";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import List from "./List";
 import { Box } from "@mui/material";
-
-const listItems: IListItem[] = [
-  {
-    label: "Users",
-    to: "/users",
-    Icon: GroupIcon,
-  },
-  {
-    label: "Posts",
-    to: "/posts",
-    Icon: NoteAltIcon,
-  },
-  {
-    label: "Tags",
-    to: "/tags",
-    Icon: SellIcon,
-  },
-];
+import { routes } from "../../App";
 
 export const drawerWidth = 240;
 
@@ -84,7 +64,7 @@ export default function MiniDrawer() {
       <Drawer variant="permanent" open={open}>
         <Bar open={open} handleDrawerOpen={handleDrawerOpen} />
         <DrawerHeader handleDrawerClose={handleDrawerClose} />
-        <List open={open} listItems={listItems} />
+        <List open={open} listItems={routes} />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
         <Outlet />

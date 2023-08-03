@@ -13,7 +13,24 @@ interface Props {
   children: ReactNode;
 }
 
-const customTheme = createTheme({});
+const customTheme = createTheme({
+  shape: {
+    borderRadius: 12,
+  },
+  palette: {
+    primary: {
+      main: "#212121",
+    },
+  },
+  components: {
+    MuiStack: {
+      defaultProps: {
+        useFlexGap: true,
+        alignItems: "center",
+      },
+    },
+  },
+});
 
 const CustomThemeProvider: FC<Props> = ({ children }) => {
   return (
