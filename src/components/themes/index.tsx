@@ -7,6 +7,7 @@ import {
   ThemeOptions,
   ThemeProvider,
   createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import "ag-grid-community/styles/ag-grid.css";
@@ -16,6 +17,7 @@ import "../../index.css";
 import { useThemeMode } from "../../redux/Preferences/Slices";
 import componentsOverrides from "../common/themes/overrides";
 import Palette from "./palette";
+import { THEMEMODE, systemToThemeMode } from "../../redux/Preferences/helpers";
 
 interface ICustomThemeProviderProps {
   children: ReactNode;
@@ -23,7 +25,11 @@ interface ICustomThemeProviderProps {
 
 const CustomThemeProvider: FC<ICustomThemeProviderProps> = ({ children }) => {
   const mode = useThemeMode();
-  const theme = Palette(mode);
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const theme = Palette(
+    mode === THEMEMODE.SYSTEM ? systemToThemeMode(prefersDarkMode) : mode,
+  );
 
   const themeOptions = useMemo<ThemeOptions>(
     () => ({

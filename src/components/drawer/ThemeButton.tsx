@@ -1,19 +1,18 @@
-import * as React from "react";
+import { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
-import { IconButton, ListItemIcon, useMediaQuery } from "@mui/material";
+import { IconButton, ListItemIcon } from "@mui/material";
 import { changeThemeMode, useThemeMode } from "../../redux/Preferences/Slices";
 import { useAppDispatch } from "../../redux/hooks";
 import { THEMEMODE } from "../../redux/Preferences/helpers";
 
 const ThemeButton = () => {
   const mode = useThemeMode();
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
   const dispatch = useAppDispatch();
 
@@ -36,7 +35,7 @@ const ThemeButton = () => {
   };
 
   const handleSystemTheme = () => {
-    handleThemeModeChange(prefersDarkMode ? THEMEMODE.DARK : THEMEMODE.LIGHT);
+    handleThemeModeChange(THEMEMODE.SYSTEM);
     handleClose();
   };
 
@@ -47,6 +46,7 @@ const ThemeButton = () => {
   const ThemeModeIcon = {
     [THEMEMODE.LIGHT]: <LightModeIcon />,
     [THEMEMODE.DARK]: <DarkModeIcon />,
+    [THEMEMODE.SYSTEM]: <SettingsBrightnessIcon />,
   };
 
   return (
@@ -73,9 +73,7 @@ const ThemeButton = () => {
           Dark
         </MenuItem>
         <MenuItem onClick={handleSystemTheme}>
-          <ListItemIcon>
-            <SettingsBrightnessIcon />
-          </ListItemIcon>
+          <ListItemIcon>{ThemeModeIcon[THEMEMODE.SYSTEM]}</ListItemIcon>
           System
         </MenuItem>
       </Menu>
