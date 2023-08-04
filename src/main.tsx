@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { store } from "./redux/store";
-import CustomThemeProvider from "./components/theme";
+import CustomThemeProvider from "./components/themes";
 import AlertDialog from "./components/AlertDialog";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

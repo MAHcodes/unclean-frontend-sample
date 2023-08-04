@@ -4,9 +4,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { FC } from "react";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { styled } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 import { drawerWidth } from ".";
 import { Link } from "react-router-dom";
+import ThemeButton from "./ThemeButton";
 
 interface IBarProps {
   open: boolean;
@@ -19,6 +20,7 @@ interface AppBarProps extends MuiAppBarProps {
 
 const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.contrastText,
+  flex: 1,
   textDecoration: "none",
 }));
 
@@ -44,23 +46,26 @@ const AppBar = styled(MuiAppBar, {
 const Bar: FC<IBarProps> = ({ open, handleDrawerOpen }) => (
   <AppBar position="fixed" open={open}>
     <Toolbar>
-      <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        onClick={handleDrawerOpen}
-        edge="start"
-        sx={{
-          marginRight: 5,
-          ...(open && { display: "none" }),
-        }}
-      >
-        <MenuIcon />
-      </IconButton>
-      <StyledLink to="">
-        <Typography variant="h6" noWrap component="div">
-          Unclean Frontend Sample
-        </Typography>
-      </StyledLink>
+      <Stack sx={{ flex: 1 }} justifyContent="space-between" direction="row">
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{
+            marginRight: 5,
+            ...(open && { display: "none" }),
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <StyledLink to="/">
+          <Typography variant="h6" noWrap component="div">
+            Unclean Frontend Sample
+          </Typography>
+        </StyledLink>
+        <ThemeButton />
+      </Stack>
     </Toolbar>
   </AppBar>
 );
