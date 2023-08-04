@@ -1,4 +1,4 @@
-import { PayloadAction, PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { THEMEMODE, isDarkMode } from "../helpers";
 import { IColor, PreferenceOptions } from "../types";
 import { useAppSelector } from "../../hooks";

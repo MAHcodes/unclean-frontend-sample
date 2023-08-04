@@ -1,14 +1,20 @@
-import { ThemeOptions, ThemeProvider, createTheme } from "@mui/material";
-import CssBaseline from "@mui/material/CssBaseline";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import "../../index.css";
-import { FC, ReactNode, useMemo } from "react";
+import {
+  StyledEngineProvider,
+  ThemeOptions,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+import { FC, ReactNode, memo, useMemo } from "react";
+import "../../index.css";
 import { useThemeMode } from "../../redux/Preferences/Slices";
+import componentsOverrides from "../common/themes/overrides";
 import Palette from "./palette";
 
 interface ICustomThemeProviderProps {
@@ -25,26 +31,22 @@ const CustomThemeProvider: FC<ICustomThemeProviderProps> = ({ children }) => {
         borderRadius: 12,
       },
       palette: theme.palette,
-      components: {
-        MuiStack: {
-          defaultProps: {
-            useFlexGap: true,
-            alignItems: "center",
-          },
-        },
-      },
     }),
     [theme],
   );
 
   const themes = createTheme(themeOptions);
 
+  themes.components = componentsOverrides(themes);
+
   return (
-    <ThemeProvider theme={themes}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={themes}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 
-export default CustomThemeProvider;
+export default memo(CustomThemeProvider);
