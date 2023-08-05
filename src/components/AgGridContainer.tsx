@@ -3,11 +3,11 @@ import { FC, useMemo } from "react";
 import { useLoaderData } from "react-router-dom";
 import DeleteButton from "../components/DeleteButton";
 
-interface IMainGridProps {
+interface IAgGridContainerProps {
   defs: any[];
 }
 
-const MainGrid: FC<IMainGridProps> = ({ defs }) => {
+const AgGridContainer: FC<IAgGridContainerProps> = ({ defs }) => {
   const data = useLoaderData();
 
   const defaultColDef = useMemo(
@@ -44,4 +44,4 @@ const MainGrid: FC<IMainGridProps> = ({ defs }) => {
   );
 };
 
-export default MainGrid;
+export default AgGridContainer;

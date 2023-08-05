@@ -13,10 +13,9 @@ import Root from ".";
 import Loadable from "./components/Loadable";
 import MiniDrawer from "./components/drawer";
 import { Api } from "./configs/axios";
-import { defs as PostsDefs } from "./pages/Posts/components/PostsGrid";
-import { defs as TagsDefs } from "./pages/Tags/components/TagsGrid";
-import { defs as UsersDefs } from "./pages/Users/components/UsersGrid";
-const MainGrid = Loadable(lazy(() => import("./routes/MainGrid")));
+const Users = Loadable(lazy(() => import("./pages/Users")));
+const Posts = Loadable(lazy(() => import("./pages/Posts")));
+const Tags = Loadable(lazy(() => import("./pages/Tags")));
 const NotFound = Loadable(lazy(() => import("./routes/404")));
 
 type IListItem = {
@@ -32,7 +31,7 @@ export const routes: IRoutes[] = [
     label: "Users",
     path: "/users",
     Icon: GroupIcon,
-    element: <MainGrid defs={UsersDefs} />,
+    element: <Users />,
     loader: async () => {
       return Api.get("/Users").then((res) => res.data);
     },
@@ -41,7 +40,7 @@ export const routes: IRoutes[] = [
     label: "Posts",
     path: "/posts",
     Icon: NoteAltIcon,
-    element: <MainGrid defs={PostsDefs} />,
+    element: <Posts />,
     loader: async () => {
       return Api.get("/Posts").then((res) => res.data);
     },
@@ -50,7 +49,7 @@ export const routes: IRoutes[] = [
     label: "Tags",
     path: "/tags",
     Icon: SellIcon,
-    element: <MainGrid defs={TagsDefs} />,
+    element: <Tags />,
     loader: async () => {
       return Api.get("/Tags").then((res) => res.data);
     },
