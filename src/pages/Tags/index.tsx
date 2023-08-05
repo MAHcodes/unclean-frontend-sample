@@ -1,4 +1,4 @@
-import AgGridContainer from "../../components/AgGridContainer";
+import AgGridContainer from "../../components/AgGrid/AgGridContainer";
 import { defs } from "./components/TagsGrid";
 
 const Tags = () => {

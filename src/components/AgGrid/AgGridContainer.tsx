@@ -1,7 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 import { FC, useMemo } from "react";
 import { useLoaderData } from "react-router-dom";
-import DeleteButton from "../components/DeleteButton";
+import DeleteButton from "./DeleteButton";
 
 interface IAgGridContainerProps {
   defs: any[];

@@ -1,12 +1,12 @@
 import { IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { dialogIt } from "../redux/features/dialogSlice";
+import { dialogIt } from "../../redux/features/dialogSlice";
 import { useLocation } from "react-router-dom";
-import { Api } from "../configs/axios";
-import { routesMap } from "../routes/settings";
+import { Api } from "../../configs/axios";
+import { routesMap } from "../../routes/settings";
 import { ICellRendererParams } from "ag-grid-community";
-import { useAppDispatch } from "../redux/hooks";
-import { createSnack } from "../redux/Snacks/slices/snacks";
+import { useAppDispatch } from "../../redux/hooks";
+import { createSnack } from "../../redux/Snacks/slices/snacks";
 
 const DeleteButton = (props: ICellRendererParams) => {
   const { data, api } = props;
