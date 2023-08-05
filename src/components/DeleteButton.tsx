@@ -18,26 +18,17 @@ const DeleteButton = (props: ICellRendererParams) => {
       data: {
         id: data.id,
       },
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          api.applyTransaction({ remove: [data] });
-          dispatch(
-            createSnack({
-              severity: "success",
-              message: "Record Deleted!",
-            }),
-          );
-        }
-      })
-      .catch((err) => {
+    }).then((res) => {
+      if (res.status === 200) {
+        api.applyTransaction({ remove: [data] });
         dispatch(
           createSnack({
-            severity: "error",
-            message: err.message,
+            severity: "success",
+            message: "Record Deleted!",
           }),
         );
-      });
+      }
+    });
   };
 
   const handleDelete = () => {

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 const Card = styled(Stack)(({ theme }) => ({
-  color: theme.palette.primary.main,
+  color: theme.palette.text.primary,
   padding: theme.spacing(3, 4),
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[2],

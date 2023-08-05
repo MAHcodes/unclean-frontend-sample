@@ -7,14 +7,17 @@ import { store } from "./redux/store";
 import CustomThemeProvider from "./components/themes";
 import AlertDialog from "./components/AlertDialog";
 import Snackbar from "./components/Snacksbar";
+import ErrorHandlerInterceptor from "./components/ErrorhandlerInterceptor.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
       <CustomThemeProvider>
-        <App />
-        <AlertDialog />
-        <Snackbar />
+        <ErrorHandlerInterceptor>
+          <App />
+          <AlertDialog />
+          <Snackbar />
+        </ErrorHandlerInterceptor>
       </CustomThemeProvider>
     </Provider>
   </React.StrictMode>,
