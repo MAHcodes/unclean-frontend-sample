@@ -6,6 +6,7 @@ import "./index.css";
 import { store } from "./redux/store";
 import CustomThemeProvider from "./components/themes";
 import AlertDialog from "./components/AlertDialog";
+import Snackbar from "./components/Snacksbar";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <CustomThemeProvider>
         <App />
         <AlertDialog />
+        <Snackbar />
       </CustomThemeProvider>
     </Provider>
   </React.StrictMode>,

@@ -55,10 +55,6 @@ const ThemeButton = () => {
         {ThemeModeIcon[mode]}
       </IconButton>
       <Menu
-        id="fade-menu"
-        MenuListProps={{
-          "aria-labelledby": "fade-button",
-        }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

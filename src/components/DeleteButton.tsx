@@ -1,13 +1,16 @@
 import { IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch } from "react-redux";
 import { dialogIt } from "../redux/features/dialogSlice";
 import { useLocation } from "react-router-dom";
 import { Api } from "../configs/axios";
 import { routesMap } from "../routes/settings";
+import { ICellRendererParams } from "ag-grid-community";
+import { useAppDispatch } from "../redux/hooks";
+import { createSnack } from "../redux/Snacks/slices/snacks";
 
-const DeleteButton = ({ data }: { data: any }) => {
-  const dispatch = useDispatch();
+const DeleteButton = (props: ICellRendererParams) => {
+  const { data, api } = props;
+  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
 
   const deleteIt = () => {
@@ -15,7 +18,26 @@ const DeleteButton = ({ data }: { data: any }) => {
       data: {
         id: data.id,
       },
-    });
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          api.applyTransaction({ remove: [data] });
+          dispatch(
+            createSnack({
+              severity: "success",
+              message: "Record Deleted!",
+            }),
+          );
+        }
+      })
+      .catch((err) => {
+        dispatch(
+          createSnack({
+            severity: "error",
+            message: err.message,
+          }),
+        );
+      });
   };
 
   const handleDelete = () => {
