@@ -1,18 +1,23 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MiniDrawer from "./components/drawer";
-import NotFound from "./routes/404";
+import GroupIcon from "@mui/icons-material/Group";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import SellIcon from "@mui/icons-material/Sell";
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { RouteObject } from "react-router-dom";
-import GroupIcon from "@mui/icons-material/Group";
-import SellIcon from "@mui/icons-material/Sell";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import { lazy } from "react";
+import {
+  RouteObject,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import Root from ".";
+import Loadable from "./components/Loadable";
+import MiniDrawer from "./components/drawer";
 import { Api } from "./configs/axios";
 import { defs as PostsDefs } from "./routes/Posts/components/Posts";
-import MainGrid from "./routes/MainGrid";
 import { defs as TagsDefs } from "./routes/Tags/components/Tags";
 import { defs as UsersDefs } from "./routes/Users/components/Users";
+const MainGrid = Loadable(lazy(() => import("./routes/MainGrid")));
+const NotFound = Loadable(lazy(() => import("./routes/404")));
 
 type IListItem = {
   label: string;
