@@ -1,6 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 import { FC, useMemo } from "react";
 import { useLoaderData } from "react-router-dom";
+import DeleteButton from "../components/DeleteButton";
 
 interface IMainGridProps {
   defs: any[];
@@ -17,6 +18,13 @@ const MainGrid: FC<IMainGridProps> = ({ defs }) => {
     [],
   );
 
+  const components = useMemo(
+    () => ({
+      DeleteButton: DeleteButton,
+    }),
+    [],
+  );
+
   return (
     <div
       className="ag-theme-alpine"
@@ -29,6 +37,7 @@ const MainGrid: FC<IMainGridProps> = ({ defs }) => {
         columnDefs={defs}
         rowSelection="multiple"
         enableRangeSelection
+        components={components}
         sideBar
       />
     </div>

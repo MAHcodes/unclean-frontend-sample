@@ -1,8 +1,8 @@
 const AppConfig = {
   url: {
-    schema: "https",
+    schema: "http",
     domain: "localhost",
-    port: "5001",
+    port: "5000",
     baseUrl: "/api",
   },
 };

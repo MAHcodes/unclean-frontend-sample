@@ -13,9 +13,9 @@ import Root from ".";
 import Loadable from "./components/Loadable";
 import MiniDrawer from "./components/drawer";
 import { Api } from "./configs/axios";
-import { defs as PostsDefs } from "./routes/Posts/components/Posts";
-import { defs as TagsDefs } from "./routes/Tags/components/Tags";
-import { defs as UsersDefs } from "./routes/Users/components/Users";
+import { defs as PostsDefs } from "./pages/Posts/components/PostsGrid";
+import { defs as TagsDefs } from "./pages/Tags/components/TagsGrid";
+import { defs as UsersDefs } from "./pages/Users/components/UsersGrid";
 const MainGrid = Loadable(lazy(() => import("./routes/MainGrid")));
 const NotFound = Loadable(lazy(() => import("./routes/404")));
 
