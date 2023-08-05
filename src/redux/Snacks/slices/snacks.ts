@@ -4,7 +4,6 @@ import { useAppSelector } from "../../hooks";
 
 const initialSnacksState: ISnack = {
   message: "",
-  autoHideDuration: 3000,
   open: false,
 };
 
@@ -15,6 +14,7 @@ const snacksSlice = createSlice({
     createSnack(_, action: PayloadAction<ISnack>) {
       return {
         open: true,
+        autoHideDuration: action.payload.autoHideDuration || 3000,
         ...action.payload,
       };
     },
