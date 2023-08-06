@@ -57,7 +57,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
 
   return (
     <>
-      <AddNewFAButton entityName={ENTITY.POSTS} action={openForm} />
+      <AddNewFAButton entityName={ENTITY.USERS} action={openForm} />
       <Dialog
         open={open}
         handleClose={closeForm}

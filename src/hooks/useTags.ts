@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Api } from "../configs/axios";
 
-interface Tag {
+export interface ITag {
   [id: string]: string;
 }
 
 const useTags = (tagIds?: number[]) => {
-  const [tags, setTags] = useState<Tag[]>([]);
+  const [tags, setTags] = useState<ITag[]>([]);
 
   useEffect(() => {
     if (tagIds) {
@@ -18,7 +18,7 @@ const useTags = (tagIds?: number[]) => {
       });
     } else {
       Api.get("/Tags").then((res) => {
-        res.data.map(({ id, name }: Tag) => {
+        res.data.map(({ id, name }: ITag) => {
           setTags((current) => ({ ...current, [id]: name }));
         });
       });
