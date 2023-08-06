@@ -1,6 +1,6 @@
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { IconButton, styled } from "@mui/material";
 import { FC } from "react";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const Header = styled("div")(({ theme }) => ({
   display: "flex",

@@ -1,12 +1,12 @@
+import MenuIcon from "@mui/icons-material/Menu";
+import { Stack, styled } from "@mui/material";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import { FC } from "react";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import { Stack, styled } from "@mui/material";
-import { drawerWidth } from ".";
 import { Link } from "react-router-dom";
+import { drawerWidth } from ".";
 import ThemeButton from "./ThemeButton";
 
 interface IBarProps {

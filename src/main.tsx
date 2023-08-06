@@ -1,13 +1,13 @@
 import React from "react";
-import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import App from "./App.tsx";
+import AlertDialog from "./components/AlertDialog";
+import ErrorHandlerInterceptor from "./components/ErrorhandlerInterceptor.tsx";
+import Snackbar from "./components/Snacksbar";
+import CustomThemeProvider from "./components/themes";
 import "./index.css";
 import { store } from "./redux/store";
-import CustomThemeProvider from "./components/themes";
-import AlertDialog from "./components/AlertDialog";
-import Snackbar from "./components/Snacksbar";
-import ErrorHandlerInterceptor from "./components/ErrorhandlerInterceptor.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -12,7 +12,8 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown",
+    "src/**/*.{ts,tsx}": "organize-imports-cli"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -49,6 +50,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "organize-imports-cli": "^0.10.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"

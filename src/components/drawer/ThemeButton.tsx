@@ -1,14 +1,14 @@
-import { useState } from "react";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import { IconButton, ListItemIcon } from "@mui/material";
-import { changeThemeMode, useThemeMode } from "../../redux/Preferences/Slices";
+import Fade from "@mui/material/Fade";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { THEMEMODE } from "../../redux/Preferences/helpers";
+import { changeThemeMode, useThemeMode } from "../../redux/Preferences/Slices";
 
 const ThemeButton = () => {
   const mode = useThemeMode();

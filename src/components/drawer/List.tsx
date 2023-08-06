@@ -1,7 +1,7 @@
 import GroupIcon from "@mui/icons-material/Group";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import SellIcon from "@mui/icons-material/Sell";
-import { SvgIconTypeMap, styled } from "@mui/material";
+import { styled, SvgIconTypeMap } from "@mui/material";
 import { default as MuiList } from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";

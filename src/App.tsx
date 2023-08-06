@@ -1,12 +1,12 @@
 import { lazy } from "react";
 import {
+  createBrowserRouter,
   RouteObject,
   RouterProvider,
-  createBrowserRouter,
 } from "react-router-dom";
 import Root from ".";
-import Loadable from "./components/Loadable";
 import MiniDrawer from "./components/drawer";
+import Loadable from "./components/Loadable";
 import { Api } from "./configs/axios";
 const Users = Loadable(lazy(() => import("./pages/Users")));
 const Posts = Loadable(lazy(() => import("./pages/Posts")));

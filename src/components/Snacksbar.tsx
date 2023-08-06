@@ -1,6 +1,6 @@
 import { Alert, Snackbar } from "@mui/material";
-import { closeSnack, useSnacks } from "../redux/Snacks/slices/snacks";
 import { useAppDispatch } from "../redux/hooks";
+import { closeSnack, useSnacks } from "../redux/Snacks/slices/snacks";
 
 const CustomSnackbar = () => {
   const snack = useSnacks();

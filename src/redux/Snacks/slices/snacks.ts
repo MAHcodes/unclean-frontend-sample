@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ISnack } from "../types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useAppSelector } from "../../hooks";
+import { ISnack } from "../types";
 
 const initialSnacksState: ISnack = {
   message: "",

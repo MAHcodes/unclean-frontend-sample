@@ -3,21 +3,21 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import {
+  createTheme,
   StyledEngineProvider,
   ThemeOptions,
   ThemeProvider,
-  createTheme,
   useMediaQuery,
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import { FC, ReactNode, memo, useMemo } from "react";
+import { FC, memo, ReactNode, useMemo } from "react";
 import "../../index.css";
+import { systemToThemeMode, THEMEMODE } from "../../redux/Preferences/helpers";
 import { useThemeMode } from "../../redux/Preferences/Slices";
 import componentsOverrides from "../common/themes/overrides";
 import Palette from "./palette";
-import { THEMEMODE, systemToThemeMode } from "../../redux/Preferences/helpers";
 
 interface ICustomThemeProviderProps {
   children: ReactNode;

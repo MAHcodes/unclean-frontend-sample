@@ -1,8 +1,8 @@
+import { AxiosError } from "axios";
 import { FC } from "react";
+import { useResponseInterceptor } from "../hooks/AxiosInterceptors";
 import { useAppDispatch } from "../redux/hooks";
 import { createSnack } from "../redux/Snacks/slices/snacks";
-import { AxiosError } from "axios";
-import { useResponseInterceptor } from "../hooks/AxiosInterceptors";
 
 export interface IErrorHandlerInterceptorProps {
   children: React.ReactNode;

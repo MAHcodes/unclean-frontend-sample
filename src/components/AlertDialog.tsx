@@ -5,8 +5,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 import { cancel } from "../redux/features/dialogSlice";
+import { RootState } from "../redux/store";
 
 const AlertDialog = () => {
   const {

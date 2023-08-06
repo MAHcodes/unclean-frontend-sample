@@ -1,11 +1,11 @@
+import { Box } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
-import { CSSObject, Theme, styled } from "@mui/material/styles";
+import { CSSObject, styled, Theme } from "@mui/material/styles";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import DrawerHeader from "./Header";
 import Bar from "./Bar";
+import DrawerHeader from "./Header";
 import List from "./List";
-import { Box } from "@mui/material";
 
 export const drawerWidth = 240;
 

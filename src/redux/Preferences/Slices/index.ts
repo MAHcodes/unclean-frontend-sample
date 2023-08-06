@@ -1,7 +1,7 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { THEMEMODE, isDarkMode } from "../helpers";
-import { IColor, PreferenceOptions } from "../types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useAppSelector } from "../../hooks";
+import { isDarkMode, THEMEMODE } from "../helpers";
+import { IColor, PreferenceOptions } from "../types";
 
 const initialPreferencesState = {
   mode: THEMEMODE.LIGHT,

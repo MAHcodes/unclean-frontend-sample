@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useEffect, DependencyList } from "react";
+import { DependencyList, useEffect } from "react";
 import { Api } from "../../configs/axios";
 
 export type RequestInterceptorFn = (config: AxiosRequestConfig<any>) => void;
