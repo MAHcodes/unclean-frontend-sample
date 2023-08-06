@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { routes } from "./App";
 import {
   Stack,
   Typography,
@@ -7,6 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { listItems } from "./components/drawer/List";
 
 const Card = styled(Stack)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -28,8 +28,8 @@ const Root = () => {
       justifyContent="center"
       spacing={2}
     >
-      {routes.map(({ Icon, path, label }) => (
-        <Link key={path} to={path} style={{ textDecoration: "none" }}>
+      {listItems.map(({ Icon, to, label }) => (
+        <Link key={to} to={to} style={{ textDecoration: "none" }}>
           <Card spacing={2}>
             <Icon sx={{ width: "3rem", height: "3rem" }} />
             <Typography variant="h6">{label}</Typography>

@@ -1,16 +1,42 @@
+import GroupIcon from "@mui/icons-material/Group";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import SellIcon from "@mui/icons-material/Sell";
+import { SvgIconTypeMap, styled } from "@mui/material";
 import { default as MuiList } from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material";
-import { IRoutes } from "../../App";
+
+type IListItem = {
+  label: string;
+  Icon: OverridableComponent<SvgIconTypeMap>;
+  to: string;
+};
+
+export const listItems: IListItem[] = [
+  {
+    label: "Users",
+    to: "/users",
+    Icon: GroupIcon,
+  },
+  {
+    label: "Posts",
+    Icon: NoteAltIcon,
+    to: "/posts",
+  },
+  {
+    label: "Tags",
+    to: "/tags",
+    Icon: SellIcon,
+  },
+];
 
 interface IListProps {
   open?: boolean;
-  listItems: IRoutes[];
 }
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -18,11 +44,11 @@ const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
-const List: FC<IListProps> = ({ open, listItems }) => {
+const List: FC<IListProps> = ({ open }) => {
   return (
     <MuiList>
-      {listItems.map(({ label, path, Icon }, idx) => (
-        <StyledLink key={idx} to={path}>
+      {listItems.map(({ label, to, Icon }, idx) => (
+        <StyledLink key={idx} to={to}>
           <ListItem disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{

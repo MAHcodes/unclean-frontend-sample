@@ -6,7 +6,6 @@ import DrawerHeader from "./Header";
 import Bar from "./Bar";
 import List from "./List";
 import { Box } from "@mui/material";
-import { routes } from "../../App";
 
 export const drawerWidth = 240;
 
@@ -64,7 +63,7 @@ export default function MiniDrawer() {
       <Drawer variant="permanent" open={open}>
         <Bar open={open} handleDrawerOpen={handleDrawerOpen} />
         <DrawerHeader handleDrawerClose={handleDrawerClose} />
-        <List open={open} listItems={routes} />
+        <List open={open} />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
         <Outlet />
