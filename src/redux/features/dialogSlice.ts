@@ -25,11 +25,8 @@ export const dialogSlice = createSlice({
       state.context = action.payload.context;
       state.agree = action.payload.agree;
     },
-    cancel: (state) => {
-      state.open = initialState.open;
-      state.title = initialState.title;
-      state.context = initialState.context;
-      state.agree = initialState.agree;
+    cancel: () => {
+      return initialState;
     },
   },
 });

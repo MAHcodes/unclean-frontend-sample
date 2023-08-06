@@ -1,10 +1,14 @@
 import AgGridContainer from "../../components/AgGrid/AgGridContainer";
-import withAddNewFAButton from "../../components/HOC/withAddNewFAButton";
-import { ENTITY } from "../../services/Abstractions/EntitiesNames";
+import PostsForm from "./components/PostsForm";
 import { defs } from "./components/PostsGrid";
 
 const Posts = () => {
-  return <AgGridContainer defs={defs} />;
+  return (
+    <>
+      <AgGridContainer defs={defs} />
+      <PostsForm />
+    </>
+  );
 };
 
-export default withAddNewFAButton(Posts, ENTITY.POSTS);
+export default Posts;
