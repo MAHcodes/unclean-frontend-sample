@@ -1,5 +1,9 @@
 export const defs = [
-  { field: "id" },
-  { field: "name" },
-  { headerName: "Delete", cellRenderer: "DeleteButton" },
+  { field: "id", filter: "agTextColumnFilter" },
+  { field: "name", filter: "agTextColumnFilter" },
+  {
+    headerName: "Delete",
+    cellRenderer: "DeleteButton",
+    filter: "agTextColumnFilter",
+  },
 ];

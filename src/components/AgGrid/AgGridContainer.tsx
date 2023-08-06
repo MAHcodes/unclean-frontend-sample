@@ -39,6 +39,7 @@ const AgGridContainer: FC<IAgGridContainerProps> = ({ defs }) => {
         enableRangeSelection
         components={components}
         sideBar
+        pagination
       />
     </div>
   );
