@@ -4,6 +4,5 @@ export const defs = [
   {
     headerName: "Delete",
     cellRenderer: "DeleteButton",
-    filter: "agTextColumnFilter",
   },
 ];
