@@ -9,7 +9,11 @@ export const defs: ColDef[] = [
     headerName: "Author",
     filter: "agTextColumnFilter",
   },
-  { field: "tagIds", headerName: "Tags", filter: "agTextColumnFilter" },
+  {
+    headerName: "Tags",
+    cellRenderer: "TagNames",
+    filter: "agTextColumnFilter",
+  },
   {
     field: "postedDate",
     headerName: "Post Date",
