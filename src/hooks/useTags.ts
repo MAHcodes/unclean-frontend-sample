@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Api } from "../configs/axios";
 
 export interface ITag {
-  [id: string]: string;
+  id: string;
+  name: string;
 }
 
 const useTags = (tagIds?: number[]) => {
@@ -10,6 +11,7 @@ const useTags = (tagIds?: number[]) => {
 
   useEffect(() => {
     if (tagIds) {
+      // TODO: use promise
       tagIds.forEach((tagId) => {
         Api.get(`/Tags/byId?id=${tagId}`).then((res) => {
           const { id, name } = res.data;
@@ -18,9 +20,9 @@ const useTags = (tagIds?: number[]) => {
       });
     } else {
       Api.get("/Tags").then((res) => {
-        res.data.map(({ id, name }: ITag) => {
-          setTags((current) => ({ ...current, [id]: name }));
-        });
+        setTags(res.data.map(({ id, name }: ITag) => {
+          return {id, name};
+        }));
       });
     }
   }, [tagIds]);

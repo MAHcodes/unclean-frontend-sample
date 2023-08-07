@@ -29,7 +29,7 @@ const AgGridContainer: FC<IAgGridContainerProps> = ({ defs }) => {
 
   return (
     <div
-      className="ag-theme-alpine"
+      className="ag-theme-material"
       style={{ width: "100%", aspectRatio: "2/1" }}
     >
       <AgGridReact

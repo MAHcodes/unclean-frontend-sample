@@ -3,15 +3,15 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import {
-  createTheme,
-  StyledEngineProvider,
-  ThemeOptions,
-  ThemeProvider,
-  useMediaQuery,
+    createTheme,
+    StyledEngineProvider,
+    ThemeOptions,
+    ThemeProvider,
+    useMediaQuery
 } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import "ag-grid-community/styles/ag-theme-material.min.css";
 import { FC, memo, ReactNode, useMemo } from "react";
 import "../../index.css";
 import { systemToThemeMode, THEMEMODE } from "../../redux/Preferences/helpers";

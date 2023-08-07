@@ -13,10 +13,10 @@ import { ENTITY } from "../../../services/Abstractions/EntitiesNames";
 const validate = (values: {
   title: string;
   description: string;
-  tags: [number, string][];
-  user: { [id: number]: string };
+  tags: { id: number; name: string }[];
+  user: { id: number; username: string };
 }) => {
-  const errors: { title?: string; description?: string; userId?: string } = {};
+  const errors: { title?: string; description?: string; user?: string } = {};
 
   if (!values.title) {
     errors.title = "Post title is requiered";
@@ -26,7 +26,7 @@ const validate = (values: {
     }
 
     if (!values.user) {
-      errors.userId = "User is requiered";
+      errors.user = "User is requiered";
     }
 
     return errors;
@@ -43,7 +43,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
       title: "",
       description: "",
       tags: [],
-      user: { id: 0, name: "" },
+      user: { id: 0, username: "" },
     },
     validate,
     onSubmit: (values) => {
@@ -51,7 +51,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
       Api.post("/Posts", {
         title,
         description,
-        tagIds: tags.map((tagId: [number]) => tagId[0]),
+        tagIds: tags.map((tag) => tag.id),
         userId: user.id,
       }).then((res) => {
         if (res.status === 200) {
@@ -110,8 +110,13 @@ const UsersForm: FC<IUsersFormProps> = () => {
             />
             <Autocomplete
               sx={{ width: "100%" }}
-              options={Object.entries(tags)}
-              getOptionLabel={(option) => option[0]} // BUG: getOptionLabel is used as a key by mui?
+              options={tags}
+              getOptionLabel={(option) => option.name}
+              renderOption={(props, option) => (
+                <li {...props} key={option.id}>
+                  {option.name}
+                </li>
+              )}
               freeSolo
               multiple
               value={formik.values.tags}
@@ -121,26 +126,43 @@ const UsersForm: FC<IUsersFormProps> = () => {
               renderTags={(value, props) =>
                 value.map((option, index) => (
                   <Chip
-                    label={<>{option[1]}</>}
+                    label={<>{option.name}</>}
                     {...props({ index })}
-                    key={option[0]}
+                    key={option.id}
                   />
                 ))
               }
+              // TODO: isOptionEqualToValue
               renderInput={(params) => (
                 <TextField label="Add Tags" {...params} />
               )}
             />
             <Autocomplete
               sx={{ width: "100%" }}
-              options={Object.entries(users)}
-              getOptionLabel={(option) => option[1]} // BUG: getOptionLabel is used as a key by mui?
+              options={users}
+              getOptionLabel={(option) => option.username || ""}
+              renderOption={(props, option) => (
+                <li {...props} key={option.id}>
+                  {option.username}
+                </li>
+              )}
               freeSolo
-              value={formik.values.user.name}
+              value={formik.values.user}
               onChange={(_, newValue) => {
-                formik.setFieldValue("userId", newValue ? newValue[0] : "");
+                formik.setFieldValue("user", newValue);
               }}
-              renderInput={(params) => <TextField label="User" {...params} />}
+              renderTags={(value, props) =>
+                value.map((option, index) => (
+                  <Chip
+                    label={<>{option.username}</>}
+                    {...props({ index })}
+                    key={option.id}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField label="User" {...params} />
+              )}
             />
           </Stack>
         </form>

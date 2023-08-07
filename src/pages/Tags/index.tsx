@@ -5,7 +5,7 @@ import { defs } from "./components/TagsGrid";
 
 const Tags = () => {
   return <>
-    <AgGridContainer defs={defs} />;
+    <AgGridContainer defs={defs} />
     <AddNewFAButton entityName={ENTITY.TAGS} />
   </>
 };

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Api } from "../configs/axios";
 
 export interface IUser {
-  [id: string]: string;
+  id: string;
+  username: string;
 }
 
 const useUsers = (userIds?: number[]) => {
@@ -18,9 +19,11 @@ const useUsers = (userIds?: number[]) => {
       });
     } else {
       Api.get("/Users").then((res) => {
-        res.data.map(({ id, username }: IUser) => {
-          setUsers((current) => ({ ...current, [id]: username }));
-        });
+        setUsers(
+          res.data.map(({ id, username }: IUser) => {
+            return { id, username };
+          }),
+        );
       });
     }
   }, [userIds]);
