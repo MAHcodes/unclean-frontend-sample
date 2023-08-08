@@ -1,3 +1,4 @@
+// TODO: migrate to react-hook-form
 import { Autocomplete, Chip, Stack, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { FC, useState } from "react";
@@ -87,7 +88,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
         open={open}
         handleClose={closeForm}
         handleSubmit={formik.handleSubmit}
-        title="Create Post"
+        title="Create New Post"
       >
         <form onSubmit={formik.handleSubmit}>
           <Stack spacing={2} sx={{ mt: 2 }}>
@@ -147,7 +148,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
                 </li>
               )}
               freeSolo
-              value={formik.values.user}
+              value={formik.values.user.toString()}
               onChange={(_, newValue) => {
                 formik.setFieldValue("user", newValue);
               }}

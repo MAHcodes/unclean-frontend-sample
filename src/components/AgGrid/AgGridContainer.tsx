@@ -1,3 +1,4 @@
+import { GetRowIdFunc } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { FC, useMemo } from "react";
 import { useLoaderData } from "react-router-dom";
@@ -27,12 +28,15 @@ const AgGridContainer: FC<IAgGridContainerProps> = ({ defs }) => {
     [],
   );
 
+  const getRowId: GetRowIdFunc = (params) => params.data.id.toString();
+
   return (
     <div
       className="ag-theme-material"
       style={{ width: "100%", aspectRatio: "2/1" }}
     >
       <AgGridReact
+        getRowId={getRowId}
         animateRows
         rowData={data as any[]}
         defaultColDef={defaultColDef}
