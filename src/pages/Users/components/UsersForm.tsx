@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import Dialog from "../../../components/Dialog";
 import { Api } from "../../../configs/axios";
-import { closeFormDialog } from "../../../redux/FormDialog/slices/formDialog";
+import {
+    closeFormDialog,
+    useFormDialog
+} from "../../../redux/FormDialog/slices/formDialog";
 import { useAppDispatch } from "../../../redux/hooks";
 import { createSnack } from "../../../redux/Snacks/slices/snacks";
 
@@ -16,11 +19,13 @@ const schema = yup
   })
   .required();
 
-interface IUsersFormProps { }
+interface IUsersFormProps {}
 
 const UsersForm: FC<IUsersFormProps> = () => {
   const dispatch = useAppDispatch();
+  const { data: editData } = useFormDialog();
 
+  console.log(editData);
   const {
     handleSubmit,
     reset,
@@ -28,6 +33,10 @@ const UsersForm: FC<IUsersFormProps> = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: editData?.username,
+      email: editData?.email,
+    },
   });
 
   const closeForm = () => {
@@ -36,16 +45,34 @@ const UsersForm: FC<IUsersFormProps> = () => {
   };
 
   const onSubmit = (data: any) => {
-    Api.post("/Users", data).then((res) => {
-      if (res.status === 200) {
-        dispatch(
-          createSnack({
-            severity: "success",
-            message: `Created User ${res?.data?.data?.username}!`,
-          }),
-        );
-      }
-    });
+    if (editData) {
+      Api.put("/Users", {
+        id: editData.id,
+        name: data.name,
+        email: data.email,
+        postIds: editData?.posts?.map((post: { id: number }) => post.id),
+      }).then((res) => {
+        if (res.status === 200) {
+          dispatch(
+            createSnack({
+              severity: "success",
+              message: `Updated User ${res?.data?.data?.username}!`,
+            }),
+          );
+        }
+      });
+    } else {
+      Api.post("/Users", data).then((res) => {
+        if (res.status === 200) {
+          dispatch(
+            createSnack({
+              severity: "success",
+              message: `Created User ${res?.data?.data?.username}!`,
+            }),
+          );
+        }
+      });
+    }
     reset();
     closeForm();
   };
