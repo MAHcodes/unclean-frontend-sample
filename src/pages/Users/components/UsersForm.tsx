@@ -1,14 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Stack, TextField } from "@mui/material";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import AddNewFAButton from "../../../components/AddNewFAButton";
 import Dialog from "../../../components/Dialog";
 import { Api } from "../../../configs/axios";
+import { closeFormDialog } from "../../../redux/FormDialog/slices/formDialog";
 import { useAppDispatch } from "../../../redux/hooks";
 import { createSnack } from "../../../redux/Snacks/slices/snacks";
-import { ENTITY } from "../../../services/Abstractions/EntitiesNames";
 
 const schema = yup
   .object({
@@ -21,7 +20,7 @@ interface IUsersFormProps { }
 
 const UsersForm: FC<IUsersFormProps> = () => {
   const dispatch = useAppDispatch();
-  const [open, setOpen] = useState(false);
+
   const {
     handleSubmit,
     reset,
@@ -31,13 +30,9 @@ const UsersForm: FC<IUsersFormProps> = () => {
     resolver: yupResolver(schema),
   });
 
-  const openForm = () => {
-    setOpen(true);
-  };
-
   const closeForm = () => {
     reset();
-    setOpen(false);
+    dispatch(closeFormDialog());
   };
 
   const onSubmit = (data: any) => {
@@ -56,34 +51,31 @@ const UsersForm: FC<IUsersFormProps> = () => {
   };
 
   return (
-    <>
-      <AddNewFAButton entityName={ENTITY.USERS} action={openForm} />
-      <Dialog
-        open={open}
-        handleClose={closeForm}
-        handleSubmit={handleSubmit(onSubmit)}
-        title="Create New User"
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={2} sx={{ mt: 2 }}>
-            <TextField
-              fullWidth
-              label="Name"
-              error={!!errors.name?.message}
-              helperText={errors.name?.message}
-              {...register("name")}
-            />
-            <TextField
-              fullWidth
-              label="Email"
-              error={!!errors.email?.message}
-              helperText={errors.email?.message}
-              {...register("email")}
-            />
-          </Stack>
-        </form>
-      </Dialog>
-    </>
+    <Dialog
+      open
+      handleClose={closeForm}
+      handleSubmit={handleSubmit(onSubmit)}
+      title="Create New User"
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={2} sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            label="Name"
+            error={!!errors.name?.message}
+            helperText={errors.name?.message}
+            {...register("name")}
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            error={!!errors.email?.message}
+            helperText={errors.email?.message}
+            {...register("email")}
+          />
+        </Stack>
+      </form>
+    </Dialog>
   );
 };
 
