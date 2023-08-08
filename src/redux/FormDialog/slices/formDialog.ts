@@ -3,9 +3,7 @@ import { ENTITY } from "../../../services/Abstractions/EntitiesNames";
 import { useAppSelector } from "../../hooks";
 import { IFormDialog } from "../types";
 
-const initialFormDialogState: IFormDialog = {
-  target: undefined,
-};
+const initialFormDialogState: IFormDialog = {};
 
 const formDialogSlice = createSlice({
   name: "formDialog",
@@ -14,13 +12,17 @@ const formDialogSlice = createSlice({
     openFormDialog: (state, action: PayloadAction<ENTITY>) => {
       state.target = action.payload;
     },
-    closeFormDialog: (state) => {
-      state.target = initialFormDialogState.target;
+    setFormData: (state, action: PayloadAction<any>) => {
+      state.data = action.payload;
+    },
+    closeFormDialog: () => {
+      return initialFormDialogState;
     },
   },
 });
 
-export const { closeFormDialog, openFormDialog } = formDialogSlice.actions;
+export const { setFormData, openFormDialog, closeFormDialog } =
+  formDialogSlice.actions;
 
 export const useFormDialog = () => useAppSelector((state) => state.formDialog);
 
