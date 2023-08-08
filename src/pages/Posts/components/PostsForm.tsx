@@ -33,7 +33,7 @@ const validate = (values: {
   }
 };
 
-interface IUsersFormProps { }
+interface IUsersFormProps {}
 
 const UsersForm: FC<IUsersFormProps> = () => {
   const dispatch = useAppDispatch();
@@ -58,7 +58,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
           dispatch(
             createSnack({
               severity: "success",
-              message: `Post User ${res?.data?.data?.title}!`,
+              message: `Created post ${res?.data?.data?.title}!`,
             }),
           );
         }
@@ -160,9 +160,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
                   />
                 ))
               }
-              renderInput={(params) => (
-                <TextField label="User" {...params} />
-              )}
+              renderInput={(params) => <TextField label="User" {...params} />}
             />
           </Stack>
         </form>

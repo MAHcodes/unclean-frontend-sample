@@ -1,8 +1,6 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { Stack, TextField } from "@mui/material";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import AddNewFAButton from "../../../components/AddNewFAButton";
 import Dialog from "../../../components/Dialog";
 import { Api } from "../../../configs/axios";
@@ -10,16 +8,13 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { createSnack } from "../../../redux/Snacks/slices/snacks";
 import { ENTITY } from "../../../services/Abstractions/EntitiesNames";
 
-const schema = yup
-  .object({
-    name: yup.string().required().min(2),
-    email: yup.string().email().required(),
-  })
-  .required();
+interface ITagsFormProps { }
 
-interface IUsersFormProps { }
+interface ITagsFormInput {
+  tag: string;
+}
 
-const UsersForm: FC<IUsersFormProps> = () => {
+const TagsForm: FC<ITagsFormProps> = () => {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
   const {
@@ -27,9 +22,7 @@ const UsersForm: FC<IUsersFormProps> = () => {
     reset,
     register,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm<ITagsFormInput>();
 
   const openForm = () => {
     setOpen(true);
@@ -40,13 +33,15 @@ const UsersForm: FC<IUsersFormProps> = () => {
     setOpen(false);
   };
 
-  const onSubmit = (data: any) => {
-    Api.post("/Users", data).then((res) => {
+  const onSubmit = (data: ITagsFormInput) => {
+    Api.post("/Tags", {
+      name: data.tag,
+    }).then((res) => {
       if (res.status === 200) {
         dispatch(
           createSnack({
             severity: "success",
-            message: `Created User ${res?.data?.data?.username}!`,
+            message: `Created tag ${res?.data?.data?.name}!`,
           }),
         );
       }
@@ -57,28 +52,21 @@ const UsersForm: FC<IUsersFormProps> = () => {
 
   return (
     <>
-      <AddNewFAButton entityName={ENTITY.USERS} action={openForm} />
+      <AddNewFAButton entityName={ENTITY.TAGS} action={openForm} />
       <Dialog
         open={open}
         handleClose={closeForm}
         handleSubmit={handleSubmit(onSubmit)}
-        title="Create New User"
+        title="Create New Tag"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={2} sx={{ mt: 2 }}>
             <TextField
               fullWidth
               label="Name"
-              error={!!errors.name?.message}
-              helperText={errors.name?.message}
-              {...register("name")}
-            />
-            <TextField
-              fullWidth
-              label="Email"
-              error={!!errors.email?.message}
-              helperText={errors.email?.message}
-              {...register("email")}
+              error={!!errors.tag?.message}
+              helperText={errors.tag?.message}
+              {...register("tag", { required: true })}
             />
           </Stack>
         </form>
@@ -87,4 +75,4 @@ const UsersForm: FC<IUsersFormProps> = () => {
   );
 };
 
-export default UsersForm;
+export default TagsForm;
