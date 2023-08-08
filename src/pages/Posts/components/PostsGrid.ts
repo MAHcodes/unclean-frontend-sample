@@ -21,7 +21,7 @@ export const defs: ColDef[] = [
     filter: "agTextColumnFilter",
   },
   {
-    headerName: "Delete",
-    cellRenderer: "DeleteButton",
+    headerName: "Options",
+    cellRenderer: "Options",
   },
 ];

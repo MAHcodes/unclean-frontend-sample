@@ -2,7 +2,7 @@ import { GetRowIdFunc } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import { FC, useMemo } from "react";
 import { useLoaderData } from "react-router-dom";
-import DeleteButton from "./DeleteButton";
+import Options from "./Options";
 import TagNames from "./TagNames";
 
 interface IAgGridContainerProps {
@@ -22,7 +22,7 @@ const AgGridContainer: FC<IAgGridContainerProps> = ({ defs }) => {
 
   const components = useMemo(
     () => ({
-      DeleteButton: DeleteButton,
+      Options: Options,
       TagNames: TagNames,
     }),
     [],
