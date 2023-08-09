@@ -25,7 +25,6 @@ const UsersForm: FC<IUsersFormProps> = () => {
   const dispatch = useAppDispatch();
   const { data: editData } = useFormDialog();
 
-  console.log(editData);
   const {
     handleSubmit,
     reset,

@@ -27,12 +27,12 @@ npm i
 
 5. Ensure that you have [CleanApiSample](https://github.com/SmartSoft-ME/CleanApiSample) running.
 
-6. You might need to edit the configurations in `src/configjjs/app.ts`
+6. You might need to edit the configurations in `src/configs/app.ts`
 
 7. Start the development server
 
 ```
-npm run dev
+npm run build
 ```
 
 8. Open your web browser and visit [http://localhost:5173](http://localhost:5173/)

@@ -6,7 +6,7 @@ const TagNames = (props: ICellRendererParams) => {
 
   const tags = useTags(data.tagIds);
 
-  return Object.values(tags).join(", ");
+  return tags.map((tag) => tag.name).join(", ");
 };
 
 export default TagNames;
